@@ -14,7 +14,7 @@ Change to directory where the Dockerfile is located and execute:
 You can choose the tag (-t) on your own. The builded image is automatically added to your local docker/podman image repository.
 
 ## Configuration
-Configure your Secret with deSec token as described under [Request Certificate](https://pypi.org/project/certbot-dns-desec).
+Configure your Secret with deSec token as described under [Request Certificate](https://pypi.org/project/certbot-dns-desec). The $DOMAIN.ini has to be saved under the volume path ( -v /path/to/etc/letsencrypt ).
 For the first run, the eMail Adress is also needed.
 
 # Starting
