@@ -1,5 +1,5 @@
 ## certbot-desec-docker
-Project for Building a deSEC DNS Authenticator plugin for Certbot (https://desec.io/).
+deSEC (https://desec.io/) DNS Authenticator for Certbot on Docker.
 
 ## Forewords
 * [certbot-dns-desec](https://pypi.org/project/certbot-dns-desec/) works only with Certbot < 2.0.0, otherwise a failure with zope module not found is thrown.
@@ -14,7 +14,7 @@ Change to directory where the Dockerfile is located and execute:
 You can choose the tag (-t) on your own. The builded image is automatically added to your local docker/podman image repository.
 
 ## Configuration
-Configure your Secret with deSec token as described under [Request Certificate](https://pypi.org/project/certbot-dns-desec). The $DOMAIN.ini has to be saved under the volume path ( -v /path/to/etc/letsencrypt ).
+Configure your Secret with deSec token as described under [Request Certificate](https://github.com/desec-io/certbot-dns-desec#request-certificate). The $DOMAIN.ini has to be saved under the volume path ( -v /path/to/etc/letsencrypt ).
 For the first run, the eMail Adress is also needed.
 
 # Starting
