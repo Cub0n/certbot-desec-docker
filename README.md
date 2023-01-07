@@ -2,9 +2,7 @@
 deSEC (https://desec.io/) DNS Authenticator for Certbot on Docker.
 
 ## Forewords
-* [certbot-dns-desec](https://pypi.org/project/certbot-dns-desec/) works only with Certbot < 2.0.0, otherwise a failure with zope module not found is thrown (see: https://github.com/desec-io/certbot-dns-desec/issues/22).
-Therefore the Docker image is built with Certbot-Image _certbot/certbot:v1.32.0_ (see https://hub.docker.com/r/certbot/certbot/tags).
-* According to the used underlying architecture (here armv7) it is necessary to select the right image (certbot/certbot:arm32v6-v1.32.0) beforehand, otherwise _pip install certbot-dns-desec_ will fail (ErrorMessage: _exec container process /bin/sh: Exec format error_).
+According to the used underlying architecture (here armv7) it is necessary to select the right image (certbot/certbot:arm32v6-*) beforehand, otherwise _pip install certbot-dns-desec_ will fail (ErrorMessage: _exec container process /bin/sh: Exec format error_).
 
 ## Build
 Change to directory where the Dockerfile is located and execute: 
