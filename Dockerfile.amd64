@@ -1,0 +1,5 @@
+
+FROM docker.io/certbot/certbot:amd64-v2.2.0
+
+# Install the DNS plugin
+RUN pip install certbot-dns-desec==1.2.1
