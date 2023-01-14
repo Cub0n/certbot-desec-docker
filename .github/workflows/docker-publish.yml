@@ -11,13 +11,7 @@ on:
 env:
   # Use docker.io for Docker Hub if empty
   REGISTRY: ghcr.io
-  # github.repository as <account>/<repo>
-  IMAGE_NAME: ${{ github.repository }}
-  # complete Path
-  IMAGE_PATH: ghcr.io/${{ github.repository }}
-  # Tag Version which triggered the build
-  TAG: ${{  github.ref_name }}
-
+  
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -27,6 +21,12 @@ jobs:
       id-token: write
 
     steps:
+      - name: PrepareReg Names
+        run: |
+         echo IMAGE_REPOSITORY=$(echo ${{ github.repository }} | tr '[:upper:]' '[:lower:]') >> $GITHUB_ENV
+         echo IMAGE_TAG=$(echo ${{ github.ref_name }} | tr '[:upper:]' '[:lower:]' | awk '{split($0,a,"/"); print a[3]}') >> $GITHUB_ENV
+         echo IMAGE_PATH=${{ env.REGISTRY }}/${{ env.IMAGE_REPOSITORY }} >> $GITHUB_ENV
+          
       - name: Checkout repository
         uses: actions/checkout@v3
 
@@ -56,8 +56,8 @@ jobs:
           context: .
           file: Dockerfile.arm32v6
           platforms: linux/arm/v6
-          push: true
-          tags: ${{ env.IMAGE_PATH }}:arm32v6-${{ env.TAG }}, ${{ env.IMAGE_PATH }}:arm32v6-latest, ${{ env.IMAGE_PATH }}:latest
+          push: ${{ github.event_name != 'pull_request' }}
+          tags: ${{ env.IMAGE_PATH }}:arm32v6-${{ env.IMAGE_TAG }}, ${{ env.IMAGE_PATH }}:arm32v6-latest, ${{ env.IMAGE_PATH }}:latest
           
       - name: Build and push Docker image for arm64v8
         id: build-and-push-arm64-v8
@@ -66,8 +66,8 @@ jobs:
           context: .
           file: Dockerfile.arm64v8
           platforms: linux/arm64/v8
-          push: true
-          tags: ${{ env.IMAGE_PATH }}:arm64v8-${{ env.TAG }}, ${{ env.IMAGE_PATH }}:arm64v8-latest, ${{ env.IMAGE_PATH }}:latest
+          push: ${{ github.event_name != 'pull_request' }}
+          tags: ${{ env.IMAGE_PATH }}:arm64v8-${{ env.IMAGE_TAG }}, ${{ env.IMAGE_PATH }}:arm64v8-latest, ${{ env.IMAGE_PATH }}:latest
           
       - name: Build and push Docker image for amd64
         id: build-and-push-amd64
@@ -76,5 +76,5 @@ jobs:
           context: .
           file: Dockerfile.amd64
           platforms: linux/amd64
-          push: true
-          tags: ${{ env.IMAGE_PATH }}:amd64-${{ env.TAG }}, ${{ env.IMAGE_PATH }}:amd64-latest, ${{ env.IMAGE_PATH }}:latest
+          push: ${{ github.event_name != 'pull_request' }}
+          tags: ${{ env.IMAGE_PATH }}:amd64-${{ env.IMAGE_TAG }}, ${{ env.IMAGE_PATH }}:amd64-latest, ${{ env.IMAGE_PATH }}:latest
