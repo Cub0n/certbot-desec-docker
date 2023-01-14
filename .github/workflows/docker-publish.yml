@@ -24,8 +24,8 @@ jobs:
       - name: PrepareReg Names
         run: |
          echo IMAGE_REPOSITORY=$(echo ${{ github.repository }} | tr '[:upper:]' '[:lower:]') >> $GITHUB_ENV
-         echo IMAGE_TAG=$(echo ${{ github.ref_name }} | tr '[:upper:]' '[:lower:]' | awk '{split($0,a,"/"); print a[3]}') >> $GITHUB_ENV
-         echo IMAGE_PATH=${{ env.REGISTRY }}/${{ env.IMAGE_REPOSITORY }} >> $GITHUB_ENV
+         echo IMAGE_TAG=${{ github.ref_name }} >> $GITHUB_ENV
+         echo IMAGE_PATH=${{ env.REGISTRY }}/${{ IMAGE_REPOSITORY }} >> $GITHUB_ENV
           
       - name: Checkout repository
         uses: actions/checkout@v3
