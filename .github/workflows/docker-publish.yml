@@ -65,5 +65,4 @@ jobs:
           docker buildx build . -f Dockerfile --platform ${{ matrix.cmd.platforms }} --push \
           -t ${{ env.REGISTRY }}/${{ env.IMAGE_REPO }}:${{ matrix.cmd.arch }}-${{ env.IMAGE_TAG }} \
           -t ${{ env.REGISTRY }}/${{ env.IMAGE_REPO }}:${{ matrix.cmd.arch }}-latest \
-          -t ${{ env.REGISTRY }}/${{ env.IMAGE_REPO }}:latest \
           --build-arg FROM_IMAGE=certbot/certbot:${{ matrix.cmd.arch }}-${{ env.BASE_IMAGE_VERSION }}
