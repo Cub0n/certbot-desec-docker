@@ -2,14 +2,19 @@ name: Docker Build and Publish to DockerHub
 
 on:
   push:
-    # Sequence of patterns matched against refs/tags
-    tags:
-      - 'v*' # Push events to matching v*, i.e. v1.0, v1.0.1
-
+    branches: [ "main" ]
+    # Publish semver tags as releases.
+    tags: [ 'v*' ] # Push events to matching v*, i.e. v1.0, v1.0.1
+  pull_request:
+    branches: [ "main" ]
+    
 env:
+  # Use docker.io for Docker Hub if empty
+  REGISTRY: ghcr.io
   # github.repository as <account>/<repo>
-  #IMAGE_NAME: ${{ github.repository }}
-  IMAGE_NAME: 'cub0n/certbot-desec-docker'
+  IMAGE_NAME: ${{ github.repository }}
+  # complete Path
+  IMAGE_PATH: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
   # Tag Version which triggered the build
   TAG: ${{  github.ref_name }}
 
@@ -28,10 +33,10 @@ jobs:
       - name: Setup Docker buildx
         uses: docker/setup-buildx-action@v2
      
-      - name: Log into registry ghcr.io
+      - name: Log into registry ${{ env.REGISTRY }}
         uses: docker/login-action@v2
         with:
-          registry: ghcr.io
+          registry: ${{ env.REGISTRY }}
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
           
@@ -52,7 +57,7 @@ jobs:
           file: Dockerfile.arm32v6
           platforms: linux/arm/v6
           push: true
-          tags: ${{ env.IMAGE_NAME }}:arm32v6-${{ env.TAG }}, ${{ env.IMAGE_NAME }}:arm32v6-latest, ${{ env.IMAGE_NAME }}:latest
+          tags: ${{ env.IMAGE_PATH }}:arm32v6-${{ env.TAG }}, ${{ env.IMAGE_PATH }}:arm32v6-latest, ${{ env.IMAGE_PATH }}:latest
           
       - name: Build and push Docker image for arm64v8
         id: build-and-push-arm64-v8
@@ -62,7 +67,7 @@ jobs:
           file: Dockerfile.arm64v8
           platforms: linux/arm64/v8
           push: true
-          tags: ${{ env.IMAGE_NAME }}:arm64v8-${{ env.TAG }}, ${{ env.IMAGE_NAME }}:arm64v8-latest, ${{ env.IMAGE_NAME }}:latest
+          tags: ${{ env.IMAGE_PATH }}:arm64v8-${{ env.TAG }}, ${{ env.IMAGE_PATH }}:arm64v8-latest, ${{ env.IMAGE_PATH }}:latest
           
       - name: Build and push Docker image for amd64
         id: build-and-push-amd64
@@ -72,4 +77,4 @@ jobs:
           file: Dockerfile.amd64
           platforms: linux/amd64
           push: true
-          tags: ${{ env.IMAGE_NAME }}:amd64-${{ env.TAG }}, ${{ env.IMAGE_NAME }}:amd64-latest, ${{ env.IMAGE_NAME }}:latest
+          tags: ${{ env.IMAGE_PATH }}:amd64-${{ env.TAG }}, ${{ env.IMAGE_PATH }}:amd64-latest, ${{ env.IMAGE_PATH }}:latest
