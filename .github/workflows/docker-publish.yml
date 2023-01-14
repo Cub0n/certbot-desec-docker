@@ -25,7 +25,7 @@ jobs:
         run: |
          echo IMAGE_REPOSITORY=$(echo ${{ github.repository }} | tr '[:upper:]' '[:lower:]') >> $GITHUB_ENV
          echo IMAGE_TAG=${{ github.ref_name }} >> $GITHUB_ENV
-         echo IMAGE_PATH="${{ env.REGISTRY }}/${{ env.IMAGE_REPOSITORY }}" >> $GITHUB_ENV
+         echo IMAGE_PATH=$(echo '${{ env.REGISTRY }}/${{ env.IMAGE_REPOSITORY }}') >> $GITHUB_ENV
           
       - name: Checkout repository
         uses: actions/checkout@v3
