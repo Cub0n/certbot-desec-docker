@@ -2,14 +2,15 @@ name: Docker Build and Publish to DockerHub
 
 on:
   push:
+    # Sequence of patterns matched against refs/tags
     tags:
-      - '**'
+      - 'v*' # Push events to matching v*, i.e. v1.0, v1.0.1
 
 env:
   # github.repository as <account>/<repo>
   IMAGE_NAME: ${{ github.repository }}
   # Tag Version which triggered the build
-  TAG: ${{ github.ref }}
+  TAG: ${{  github.ref_name }}
 
 jobs:
   build:
