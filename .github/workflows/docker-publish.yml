@@ -60,7 +60,8 @@ jobs:
       
       - name: Build and push Docker images
         id: build-and-push    
-        run: docker buildx build . -f Dockerfile --platform ${{ matrix.cmd.platforms }} --push \
+        run: |
+          docker buildx build . -f Dockerfile --platform ${{ matrix.cmd.platforms }} --push \
           -t ${{ env.REGISTRY }}/cub0n/certbot-desec-docker:${{ matrix.cmd.arch }}-${{ env.IMAGE_TAG }} \
           -t ${{ env.REGISTRY }}/cub0n/certbot-desec-docker:${{ matrix.cmd.arch }}-latest \
           -t ${{ env.REGISTRY }}/cub0n/certbot-desec-docker:latest \
