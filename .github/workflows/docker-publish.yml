@@ -50,7 +50,7 @@ jobs:
           file: Dockerfile.arm32v6
           platforms: linux/arm/v6
           push: true
-          tags: ${{ IMAGE_NAME }}:arm32v6-${{ TAG }}, ${{ IMAGE_NAME }}:arm32v6-latest, ${{ IMAGE_NAME }}:latest
+          tags: ${{ env.IMAGE_NAME }}:arm32v6-${{ env.TAG }}, ${{ env.IMAGE_NAME }}:arm32v6-latest, ${{ env.IMAGE_NAME }}:latest
           
       - name: Build and push Docker image for arm64v8
         id: build-and-push-arm64-v8
@@ -60,7 +60,7 @@ jobs:
           file: Dockerfile.arm64v8
           platforms: linux/arm64/v8
           push: true
-          tags: ${{ IMAGE_NAME }}:arm64v8-${{ TAG }}, ${{ IMAGE_NAME }}:arm64v8-latest, ${{ IMAGE_NAME }}:latest
+          tags: ${{ env.IMAGE_NAME }}:arm64v8-${{ env.TAG }}, ${{ env.IMAGE_NAME }}:arm64v8-latest, ${{ env.IMAGE_NAME }}:latest
           
       - name: Build and push Docker image for amd64
         id: build-and-push-amd64
@@ -70,4 +70,4 @@ jobs:
           file: Dockerfile.amd64
           platforms: linux/amd64
           push: true
-          tags: ${{ IMAGE_NAME }}:amd64-${{ TAG }}, ${{ IMAGE_NAME }}:amd64-latest, ${{ IMAGE_NAME }}:latest
+          tags: ${{ env.IMAGE_NAME }}:amd64-${{ env.TAG }}, ${{ env.IMAGE_NAME }}:amd64-latest, ${{ env.IMAGE_NAME }}:latest
