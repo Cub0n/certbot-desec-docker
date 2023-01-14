@@ -25,7 +25,7 @@ jobs:
       matrix:
         cmd:
           - baseimage: certbot/certbot:arm32v6-v2.1.1
-            tagcmd: -t ${{ env.REGISTRY }}/cub0n/certbot-desec-docker:arm32v6-${{ env.IMAGE_TAG }} -t ${{ env.REGISTRY }}/cub0n/certbot-desec-docker:arm32v6-latest -t ${{ env.REGISTRY }}/cub0n/certbot-desec-docker:latest
+            tagcmd: -t '${{ env.REGISTRY }}/cub0n/certbot-desec-docker:arm32v6-${{ env.IMAGE_TAG }}' -t '${{ env.REGISTRY }}/cub0n/certbot-desec-docker:arm32v6-latest' -t '${{ env.REGISTRY }}/cub0n/certbot-desec-docker:latest'
             platforms: linux/arm/v6
                       
     permissions:
