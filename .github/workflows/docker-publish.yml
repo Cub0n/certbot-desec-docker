@@ -59,4 +59,4 @@ jobs:
       
       - name: Build and push Docker images
         id: build-and-push    
-        run: docker buildx build . -f Dockerfile --platform ${{ matrix.cmd.platforms }} -t ${{ matrix.cmd.tagcmd }} --build-arg FROM_IMAGE=${{ matrix.cmd.baseimage }} --push
+        run: docker buildx build . -f Dockerfile --platform ${{ matrix.cmd.platforms }} ${{ matrix.cmd.tagcmd }} --build-arg FROM_IMAGE=${{ matrix.cmd.baseimage }} --push
