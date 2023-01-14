@@ -14,7 +14,7 @@ env:
   # github.repository as <account>/<repo>
   IMAGE_NAME: ${{ github.repository }}
   # complete Path
-  IMAGE_PATH: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+  IMAGE_PATH: ${{ REGISTRY }}/${{ IMAGE_NAME }}
   # Tag Version which triggered the build
   TAG: ${{  github.ref_name }}
 
