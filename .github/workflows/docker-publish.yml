@@ -67,6 +67,10 @@ jobs:
           -t ${{ env.REGISTRY }}/${{ env.IMAGE_REPO }}:${{ matrix.cmd.arch }}-latest \
           --build-arg FROM_IMAGE=certbot/certbot:${{ matrix.cmd.arch }}-${{ env.BASE_IMAGE_VERSION }}
 
+      - name: Sleep for 30 seconds
+        run: sleep 30s
+        shell: bash
+          
       - name: Link to latest tag
         id: link-tag
         run: |
