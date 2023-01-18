@@ -1,4 +1,4 @@
-ARG  FROM_IMAGE=certbot/certbot:amd64-v2.1.1
+ARG  FROM_IMAGE=certbot/certbot:amd64-v2.2.0
 #Base
 FROM ${FROM_IMAGE}
 
