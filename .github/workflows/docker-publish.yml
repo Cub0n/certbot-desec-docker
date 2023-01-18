@@ -68,7 +68,7 @@ jobs:
           --build-arg FROM_IMAGE=certbot/certbot:${{ matrix.cmd.arch }}-${{ env.BASE_IMAGE_VERSION }}
 
       - name: Link to latest tag
-        id: link tag
+        id: link-tag
         run: |
           docker manifest create ${{ env.REGISTRY }}/${{ env.IMAGE_REPO }}:latest \
             --amend ${{ env.REGISTRY }}/${{ env.IMAGE_REPO }}:amd64-latest \
