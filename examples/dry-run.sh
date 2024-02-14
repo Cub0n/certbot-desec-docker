@@ -13,7 +13,7 @@ ADDITIONAL_DOMAINS="-d domain1.tld -d *.domain1.tld -d domain2.tld -d *.domain2.
 docker run -it --rm --name certbot \
         -v /etc/letsencrypt:/etc/letsencrypt \
         -v /var/lib/letsencrypt:/var/lib/letsencrypt \
-        joergschulz/certbot:latest certonly --non-interactive --agree-tos --email $EMAIL \
+        ghcr.io/cub0n/certbot-desec-docker:latest certonly --non-interactive --agree-tos --email $EMAIL \
         --authenticator dns-desec \
         --dns-desec-credentials /etc/letsencrypt/secrets/$DOMAIN.ini \
         -d "$DOMAIN" \
