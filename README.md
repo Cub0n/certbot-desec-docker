@@ -21,7 +21,7 @@ with Docker:
 docker run -d --name certbot \
         -v /path/to/etc/letsencrypt:/etc/letsencrypt \
         -v /path/to/var/lib/letsencrypt:/var/lib/letsencrypt \
-        localhost/certbot:latest certonly --non-interactive --agree-tos --email $EMAIL \
+        ghcr.io/cub0n/certbot-desec-docker:latest certonly --non-interactive --agree-tos --email $EMAIL \
         --authenticator dns-desec \
         --dns-desec-credentials /etc/letsencrypt/secrets/$DOMAIN.ini \
         -d "$DOMAIN" \
@@ -33,7 +33,7 @@ with Podman:
 podman run -d --name certbot \
         -v /path/to/etc/letsencrypt:/etc/letsencrypt:Z \
         -v /path/to/var/lib/letsencrypt:/var/lib/letsencrypt:Z \
-        localhost/certbot:latest certonly --non-interactive --agree-tos --email $EMAIL \
+        ghcr.io/cub0n/certbot-desec-docker:latest certonly --non-interactive --agree-tos --email $EMAIL \
         --authenticator dns-desec \
         --dns-desec-credentials /etc/letsencrypt/secrets/$DOMAIN.ini \
         -d "$DOMAIN" \
