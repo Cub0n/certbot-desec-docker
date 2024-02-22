@@ -18,5 +18,5 @@ docker run -it --rm --name certbot \
         --dns-desec-credentials /etc/letsencrypt/secrets/$DOMAIN.ini \
         -d "$DOMAIN" \
         -d "*.$DOMAIN" \
-        ${ADDITIONAL_DOMAINS}
+        ${ADDITIONAL_DOMAINS} \
         --dry-run
