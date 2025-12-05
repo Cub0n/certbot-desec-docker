@@ -56,10 +56,9 @@ jobs:
           output-file: 'sbom.cyclonedx.json'
 
       - name: Attest
-        uses: actions/attest-sbom@v3
+        uses: actions/attest-build-provenance@v3
         id: attest
         with:
-          subject-name: ${{ env.REGISTRY }}/${{ env.IMAGE_REPO }}:latest
+          subject-name: ${{ env.REGISTRY }}/${{ env.IMAGE_REPO }}
           subject-digest: ${{ steps.push.outputs.digest }}
-          sbom-path: 'sbom.cyclonedx.json'
           push-to-registry: true
