@@ -15,7 +15,7 @@ jobs:
     permissions:
       id-token: write
       packages: write
-      contents: read
+      contents: write
       attestations: write
 
     steps:
