@@ -1,4 +1,4 @@
-ARG  FROM_IMAGE=certbot/certbot
+ARG  FROM_IMAGE=certbot/certbot:latest
 #Base
 FROM ${FROM_IMAGE}
 
