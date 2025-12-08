@@ -23,6 +23,7 @@ docker run -d --name certbot \
         -v /path/to/var/lib/letsencrypt:/var/lib/letsencrypt \
         ghcr.io/cub0n/certbot-desec-docker:latest certonly --non-interactive --agree-tos --email $EMAIL \
         --authenticator dns-desec \
+        --dns-desec-propagation-seconds 300 \
         --dns-desec-credentials /etc/letsencrypt/secrets/$DOMAIN.ini \
         -d "$DOMAIN" \
         -d "*.$DOMAIN"
@@ -35,7 +36,9 @@ podman run -d --name certbot \
         -v /path/to/var/lib/letsencrypt:/var/lib/letsencrypt:Z \
         ghcr.io/cub0n/certbot-desec-docker:latest certonly --non-interactive --agree-tos --email $EMAIL \
         --authenticator dns-desec \
+        --dns-desec-propagation-seconds 300 \
         --dns-desec-credentials /etc/letsencrypt/secrets/$DOMAIN.ini \
         -d "$DOMAIN" \
         -d "*.$DOMAIN"
 ```
+Increase the wait time with --dns-desec-propagation-seconds 300 to guarantee a certificate renewel. (https://talk.desec.io/t/failing-to-get-the-certificates-generated-by-letsencrypt-according-to-the-documentation/1479/8)
