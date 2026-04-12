@@ -1,3 +1,7 @@
+# Attention: Due to use of LEGO (https://github.com/go-acme/lego) and the support for Desec, this Repo is archived.
+
+---
+
 ## certbot-desec-docker
 deSEC (https://desec.io/) DNS Authenticator for Certbot on Docker.
 
